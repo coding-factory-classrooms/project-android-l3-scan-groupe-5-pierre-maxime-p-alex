@@ -1,4 +1,4 @@
-package com.pierre.yugiohkotlinapp.cards
+package com.pierre.yugiohkotlinapp.api
 
 import com.google.gson.GsonBuilder
 import retrofit2.Retrofit

@@ -4,8 +4,8 @@ package com.pierre.yugiohkotlinapp.cards
 import com.google.gson.annotations.SerializedName
 
 data class ProDeckModels(
-    @SerializedName("data")
-    val cardsData: List<Data>
+	@SerializedName("data")
+	val cardsData: List<Data>
 )
 
 data class Data(

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">YuGiOhKotlinApp</string>
+    <string name="liste_des_cartes">Liste des cartes</string>
+    <string name="scan">Scan</string>
+    <string name="manuellement">Manuellement</string>
+    <string name="cardId">ID de la Carte</string>
+    <string name="rechercher">Rechercher</string>
 </resources>
