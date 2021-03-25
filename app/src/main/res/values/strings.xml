@@ -6,4 +6,7 @@
     <string name="cardId">ID de la Carte</string>
     <string name="rechercher">Rechercher</string>
     <string name="add_word">button</string>
+    <string name="atk_0000">atk: 0000</string>
+    <string name="textview">TextView</string>
+    <string name="price_100_00">price: 100.00$</string>
 </resources>

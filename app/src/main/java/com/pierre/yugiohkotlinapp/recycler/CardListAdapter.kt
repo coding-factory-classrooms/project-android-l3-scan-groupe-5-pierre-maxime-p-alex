@@ -14,10 +14,16 @@ import com.pierre.yugiohkotlinapp.R
 import com.pierre.yugiohkotlinapp.room.CardEntity
 import com.squareup.picasso.Picasso
 
-class CardListAdapter : ListAdapter<CardEntity, CardListAdapter.CardViewHolder>(CardsComparator()) {
+
+
+class CardListAdapter : ListAdapter<CardEntity, CardListAdapter.CardViewHolder> (CardsComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
+
+
+
         return CardViewHolder.create(parent)
+
     }
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
@@ -32,7 +38,7 @@ class CardListAdapter : ListAdapter<CardEntity, CardListAdapter.CardViewHolder>(
 		private val cardRare: TextView = itemView.findViewById(R.id.cardRaretextView)
 
 
-		fun bind(name: String?, imageUrl: Uri?, rare: Int? ) {
+		fun bind(name: String?, imageUrl: Uri?, rare: Int?) {
 			cardName.text = name
 			Picasso.get().load(imageUrl).into(cardImage);
 			cardRare.text = rare.toString()
