@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context=".DetailsActivity">
+
+	<TextView
+		android:id="@+id/nameTextView"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="16dp"
+		android:text="@string/title"
+		android:textSize="24sp"
+		app:layout_constraintEnd_toEndOf="@+id/cardImageView"
+		app:layout_constraintStart_toStartOf="@+id/cardImageView"
+		app:layout_constraintTop_toBottomOf="@+id/cardImageView"
+		tools:text="Name : Flight Of the Harpies" />
+
+	<TextView
+		android:id="@+id/descTextView"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		android:layout_marginStart="16dp"
+		android:layout_marginLeft="16dp"
+		android:layout_marginTop="8dp"
+		android:layout_marginEnd="16dp"
+		android:layout_marginRight="16dp"
+		android:layout_marginBottom="16dp"
+		android:text="@string/desc"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/priceTextView"
+		tools:text="desc" />
+
+	<TextView
+		android:id="@+id/cardIdTextView"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/id"
+		app:layout_constraintBottom_toTopOf="@+id/descTextView"
+		app:layout_constraintEnd_toStartOf="@+id/atkTextView"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/nameTextView"
+		tools:text="id" />
+
+	<ImageView
+		android:id="@+id/cardImageView"
+		android:layout_width="330dp"
+		android:layout_height="370dp"
+		android:layout_marginTop="16dp"
+		android:contentDescription="@android:string/untitled"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:srcCompat="@drawable/cardverso" />
+
+	<TextView
+		android:id="@+id/atkTextView"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="8dp"
+		android:text="@string/atk_0000"
+		app:layout_constraintEnd_toEndOf="@+id/nameTextView"
+		app:layout_constraintStart_toStartOf="@+id/nameTextView"
+		app:layout_constraintTop_toBottomOf="@+id/nameTextView" />
+
+	<TextView
+		android:id="@+id/defTextView"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="8dp"
+		android:text="@string/textview"
+		app:layout_constraintEnd_toEndOf="@+id/atkTextView"
+		app:layout_constraintStart_toStartOf="@+id/atkTextView"
+		app:layout_constraintTop_toBottomOf="@+id/atkTextView"
+		tools:text="def : 0000" />
+
+	<TextView
+		android:id="@+id/levelTextView"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="9"
+		android:textSize="18sp"
+		android:textStyle="bold"
+		app:layout_constraintBottom_toTopOf="@+id/descTextView"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toEndOf="@+id/defTextView"
+		app:layout_constraintTop_toBottomOf="@+id/nameTextView"
+		tools:text="9" />
+
+	<TextView
+		android:id="@+id/raceTextView"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="8dp"
+		android:text="@string/desc"
+		app:layout_constraintEnd_toEndOf="@+id/defTextView"
+		app:layout_constraintStart_toStartOf="@+id/defTextView"
+		app:layout_constraintTop_toBottomOf="@+id/defTextView"
+		tools:text="ténèbre" />
+
+	<TextView
+		android:id="@+id/priceTextView"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="8dp"
+		android:text="@string/prix"
+		app:layout_constraintEnd_toEndOf="@+id/raceTextView"
+		app:layout_constraintStart_toStartOf="@+id/raceTextView"
+		app:layout_constraintTop_toBottomOf="@+id/raceTextView"
+		tools:text="price" />
+
+	<ImageView
+		android:id="@+id/levelImageView"
+		android:layout_width="31dp"
+		android:layout_height="31dp"
+		android:layout_marginStart="50dp"
+		android:layout_marginLeft="50dp"
+		android:contentDescription="@android:string/untitled"
+		app:layout_constraintBottom_toTopOf="@+id/descTextView"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toEndOf="@+id/defTextView"
+		app:layout_constraintTop_toBottomOf="@+id/nameTextView"
+		app:srcCompat="@drawable/level" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

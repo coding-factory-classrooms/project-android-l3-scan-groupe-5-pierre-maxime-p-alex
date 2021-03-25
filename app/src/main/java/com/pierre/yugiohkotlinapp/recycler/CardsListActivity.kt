@@ -3,10 +3,12 @@ package com.pierre.yugiohkotlinapp.recycler
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.pierre.yugiohkotlinapp.DetailsActivity
 import com.pierre.yugiohkotlinapp.room.CardApplication
 import com.pierre.yugiohkotlinapp.R
 import com.pierre.yugiohkotlinapp.ScanActivity
@@ -27,6 +29,20 @@ class CardsListActivity : AppCompatActivity() {
 		val adapter = CardListAdapter()
 		recyclerView.adapter = adapter
 		recyclerView.layoutManager = LinearLayoutManager(this)
+
+		adapter.onItemClick = { card ->
+			val intent = Intent(this, DetailsActivity::class.java)
+			intent.putExtra("card_name", card.cardName)
+			intent.putExtra("card_level", card.cardLevel)
+			intent.putExtra("card_atk", card.cardAtk)
+			intent.putExtra("card_def", card.cardDef)
+			intent.putExtra("card_race", card.cardRace)
+			intent.putExtra("card_desc", card.cardDesc)
+			intent.putExtra("card_price", card.cardPrice)
+			intent.putExtra("card_image", card.imageUrl)
+			intent.putExtra("card_id", card.cardId)
+			startActivity(intent)
+		}
 
 		// Add an observer on the LiveData returned by getAlphabetizedWords.
 		// The onChanged() method fires when the observed data changes and the activity is

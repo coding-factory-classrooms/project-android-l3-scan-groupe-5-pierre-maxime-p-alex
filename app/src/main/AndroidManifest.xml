@@ -23,7 +23,8 @@
         </activity>
         <activity android:name=".ManualActivity" />
         <activity android:name=".ScanActivity" />
-        <activity android:name=".recycler.CardsListActivity" />
+		<activity android:name=".DetailsActivity" />
+		<activity android:name=".recycler.CardsListActivity" />
     </application>
 
 </manifest>
