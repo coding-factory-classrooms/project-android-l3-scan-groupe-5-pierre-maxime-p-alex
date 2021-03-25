@@ -3,68 +3,105 @@ package com.pierre.yugiohkotlinapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
+import androidx.activity.viewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.liveData
 import com.pierre.yugiohkotlinapp.api.RetrofitInstance
 import com.pierre.yugiohkotlinapp.cards.CardService
 import com.pierre.yugiohkotlinapp.cards.ProDeckModels
+import com.pierre.yugiohkotlinapp.recycler.CardListAdapter
+import com.pierre.yugiohkotlinapp.recycler.CardsListActivity
+import com.pierre.yugiohkotlinapp.room.CardApplication
+import com.pierre.yugiohkotlinapp.room.CardEntity
+import com.pierre.yugiohkotlinapp.room.CardViewModel
+import com.pierre.yugiohkotlinapp.room.CardViewModelFactory
 import com.pierre.yugiohkotlinapp.utils.Utils.showAlert
-import kotlinx.android.synthetic.main.activity_cards_list.*
 import kotlinx.android.synthetic.main.activity_manual.*
 import retrofit2.Response
 
 class ManualActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_manual)
-    }
 
-    fun searchCardById(view: View) {
+	private val cardViewModel: CardViewModel by viewModels {
+		CardViewModelFactory((application as CardApplication).repository)
+	}
 
-        val cardId = editCardId.text.toString().toInt()
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		setContentView(R.layout.activity_manual)
+		val adapter = CardListAdapter()
 
-        val retrofitService = RetrofitInstance
-            .getRetrofitInstance()
-            .create(CardService::class.java)
+		cardViewModel.allCards.observe(this) { card ->
+			// Update the cached copy of the words in the adapter.
+			card.let { adapter.submitList(it) }
+		}
+	}
 
-        val responseLiveData: LiveData<Response<ProDeckModels>> = liveData {
-            val response = retrofitService.getCardById(cardId)
-            emit(response)
-        }
+	fun searchCardById(view: View) {
 
-        responseLiveData.observe(this, Observer {
-            val cardsData = it.body()
-            if (cardsData?.cardsData != null) {
-                val result = " " + "Card ID : ${cardsData.cardsData.first().id}" + "\n" +
-                        " " + "Card Name : ${cardsData.cardsData.first().name}" + "\n" +
-                        " " + "Card Image : ${cardsData.cardsData.first().cardImages.first().imageUrl}" + "\n" +
-                        " " + "Card Atk : ${cardsData.cardsData.first().atk}" + "\n" +
-                        " " + "Card Def : ${cardsData.cardsData.first().def}" + "\n\n\n"
-                Log.i("CARDETAILS", result)
-                showAlert(
-                    "Carte ajoutée",
-                    applicationContext,
-                    this
-                )
-                val intent = Intent(this, CardsListActivity::class.java)
-                startActivity(intent)
+		val cardId = editCardId.text.toString().toInt()
 
-            } else {
-                showAlert(
-                    "Carte introuvable",
-                    applicationContext,
-                    this
-                )
+		val retrofitService = RetrofitInstance
+			.getRetrofitInstance()
+			.create(CardService::class.java)
 
-            }
-        })
+		val responseLiveData: LiveData<Response<ProDeckModels>> = liveData {
+			val response = retrofitService.getCardById(cardId)
+			emit(response)
+		}
 
-        // Return une alert si l'ID correspond à aucune carte
-        // Sinon rediriger vers la liste des cartes en y ajoutant du coup la nouvelle qui viens d'être saisi
-    }
+		responseLiveData.observe(this, Observer {
+			val cardsData = it.body()
+			if (cardsData?.cardsData == null) {
+				showAlert(
+					"Carte introuvable",
+					applicationContext,
+					this
+				)
+				return@Observer
+			}
+
+			val cardBody = cardsData.cardsData.first()
+
+			val cardData = CardEntity(
+				0,
+				cardBody.name,
+				cardBody.desc,
+				cardBody.id,
+				cardBody.cardImages.first().imageUrl,
+				cardBody.atk,
+				cardBody.def,
+				cardBody.level,
+				cardBody.race,
+				"${cardBody.cardPrices.first().ebayPrice} $"
+			)
+
+			val cardDatabase = cardViewModel.allCards.value
+
+			if (cardDatabase != null) {
+				val isExist = cardDatabase.any{ it.cardId == cardBody.id}
+				if(isExist) {
+					showAlert(
+						"Carte déjà sauvegardée",
+						applicationContext,
+						this
+					)
+					return@Observer
+				}
+				Thread(Runnable {
+					cardViewModel.insert(cardData)
+				}).start()
+			}
+
+			showAlert(
+				"Carte ajoutée",
+				applicationContext,
+				this
+			)
+			val intent = Intent(this, CardsListActivity::class.java)
+			startActivity(intent)
+
+		})
+	}
 }

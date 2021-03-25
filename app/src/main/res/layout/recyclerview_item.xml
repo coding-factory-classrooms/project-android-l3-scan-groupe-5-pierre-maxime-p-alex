@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:layout_marginBottom="10dp"
+	android:orientation="vertical"
+	>
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="#2038D8"
+		android:padding="5dp"
+		>
+
+		<ImageView
+			android:id="@+id/cardImageView"
+			android:layout_width="80dp"
+			android:layout_height="80dp"
+			android:contentDescription="@android:string/untitled"
+			android:src="@drawable/cardverso"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			tools:srcCompat="@drawable/cardverso" />
+
+		<TextView
+			android:id="@+id/cardNametextView"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:textColor="@color/white"
+			android:textSize="18sp"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toEndOf="@+id/cardImageView"
+			app:layout_constraintTop_toTopOf="@+id/cardImageView" />
+
+		<TextView
+			android:id="@+id/cardRaretextView"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:textColor="@color/white"
+			android:textSize="15sp"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toEndOf="@+id/cardImageView"
+			app:layout_constraintTop_toBottomOf="@+id/cardNametextView" />
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
+
