@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.YuGiOhKotlinApp">
-        <activity android:name=".ManualActivity"></activity>
+        <activity android:name=".DetailsActivity"></activity>
+        <activity android:name=".ManualActivity" />
         <activity android:name=".ScanActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
