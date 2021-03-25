@@ -5,4 +5,5 @@
     <string name="manuellement">Manuellement</string>
     <string name="cardId">ID de la Carte</string>
     <string name="rechercher">Rechercher</string>
+    <string name="add_word">button</string>
 </resources>
