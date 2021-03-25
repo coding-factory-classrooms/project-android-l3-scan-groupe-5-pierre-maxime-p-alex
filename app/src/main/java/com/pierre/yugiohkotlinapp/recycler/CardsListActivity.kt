@@ -1,4 +1,4 @@
-package com.pierre.yugiohkotlinapp
+package com.pierre.yugiohkotlinapp.recycler
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,7 +7,9 @@ import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.pierre.yugiohkotlinapp.recycler.CardListAdapter
+import com.pierre.yugiohkotlinapp.room.CardApplication
+import com.pierre.yugiohkotlinapp.R
+import com.pierre.yugiohkotlinapp.ScanActivity
 import com.pierre.yugiohkotlinapp.room.CardViewModel
 import com.pierre.yugiohkotlinapp.room.CardViewModelFactory
 
@@ -30,7 +32,7 @@ class CardsListActivity : AppCompatActivity() {
 		// The onChanged() method fires when the observed data changes and the activity is
 		// in the foreground.
 		cardViewModel.allCards.observe(this) { card ->
-			// Update the cached copy of the words in the adapter.
+			// Update the cached copy of the cards in the adapter.
 			card.let { adapter.submitList(it) }
 		}
 

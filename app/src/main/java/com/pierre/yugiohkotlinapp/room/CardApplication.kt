@@ -1,4 +1,4 @@
-package com.pierre.yugiohkotlinapp
+package com.pierre.yugiohkotlinapp.room
 
 import android.app.Application
 import com.pierre.yugiohkotlinapp.room.CardRepository

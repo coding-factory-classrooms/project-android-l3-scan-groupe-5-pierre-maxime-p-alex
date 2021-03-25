@@ -42,7 +42,7 @@ public abstract class DatabaseInstance : RoomDatabase() {
                     )
                     cardDao.addCard(card)
                     card = CardEntity(
-                        1,
+                        0,
                         "Tornado Dragon",
                         "2 Level 4 monsters\nOnce per turn (Quick Effect): You can detach 1 material from this card, then target 1 Spell/Trap on the field; destroy it.",
                         6983839,
@@ -76,6 +76,7 @@ public abstract class DatabaseInstance : RoomDatabase() {
                     "yugioh"
                 )
                     .addCallback(CardDatabaseCallback(scope))
+					.allowMainThreadQueries()
                     .build()
                 INSTANCE = instance
                 // return instance
