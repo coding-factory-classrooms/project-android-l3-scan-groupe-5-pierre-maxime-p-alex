@@ -9,4 +9,8 @@
     <string name="atk_0000">atk: 0000</string>
     <string name="textview">TextView</string>
     <string name="price_100_00">price: 100.00$</string>
+    <string name="title">title</string>
+	<string name="desc">desc</string>
+	<string name="prix">prix</string>
+	<string name="id">id</string>
 </resources>
