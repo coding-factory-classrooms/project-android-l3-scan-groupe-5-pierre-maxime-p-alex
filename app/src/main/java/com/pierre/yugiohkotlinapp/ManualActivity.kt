@@ -3,25 +3,37 @@ package com.pierre.yugiohkotlinapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
+import androidx.activity.viewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.liveData
 import com.pierre.yugiohkotlinapp.api.RetrofitInstance
 import com.pierre.yugiohkotlinapp.cards.CardService
 import com.pierre.yugiohkotlinapp.cards.ProDeckModels
+import com.pierre.yugiohkotlinapp.recycler.CardListAdapter
+import com.pierre.yugiohkotlinapp.room.CardEntity
+import com.pierre.yugiohkotlinapp.room.CardViewModel
+import com.pierre.yugiohkotlinapp.room.CardViewModelFactory
 import com.pierre.yugiohkotlinapp.utils.Utils.showAlert
-import kotlinx.android.synthetic.main.activity_cards_list.*
 import kotlinx.android.synthetic.main.activity_manual.*
 import retrofit2.Response
 
 class ManualActivity : AppCompatActivity() {
+
+    private val cardViewModel: CardViewModel by viewModels {
+        CardViewModelFactory((application as CardApplication).repository)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_manual)
+        val adapter = CardListAdapter()
+
+        cardViewModel.allCards.observe(this) { card ->
+            // Update the cached copy of the words in the adapter.
+            card.let { adapter.submitList(it) }
+        }
     }
 
     fun searchCardById(view: View) {
@@ -40,12 +52,19 @@ class ManualActivity : AppCompatActivity() {
         responseLiveData.observe(this, Observer {
             val cardsData = it.body()
             if (cardsData?.cardsData != null) {
-                val result = " " + "Card ID : ${cardsData.cardsData.first().id}" + "\n" +
-                        " " + "Card Name : ${cardsData.cardsData.first().name}" + "\n" +
-                        " " + "Card Image : ${cardsData.cardsData.first().cardImages.first().imageUrl}" + "\n" +
-                        " " + "Card Atk : ${cardsData.cardsData.first().atk}" + "\n" +
-                        " " + "Card Def : ${cardsData.cardsData.first().def}" + "\n\n\n"
-                Log.i("CARDETAILS", result)
+                val cardData = CardEntity(
+                    cardsData.cardsData.first().id,
+                    cardsData.cardsData.first().name,
+                    cardsData.cardsData.first().desc,
+                    cardsData.cardsData.first().id,
+                    cardsData.cardsData.first().cardImages.first().imageUrl,
+                    cardsData.cardsData.first().atk,
+                    cardsData.cardsData.first().def,
+                    cardsData.cardsData.first().level,
+                    cardsData.cardsData.first().race,
+                    "${cardsData.cardsData.first().cardPrices.first().ebayPrice} $"
+                )
+                
                 showAlert(
                     "Carte ajoutée",
                     applicationContext,
@@ -53,18 +72,13 @@ class ManualActivity : AppCompatActivity() {
                 )
                 val intent = Intent(this, CardsListActivity::class.java)
                 startActivity(intent)
-
             } else {
                 showAlert(
                     "Carte introuvable",
                     applicationContext,
                     this
                 )
-
             }
         })
-
-        // Return une alert si l'ID correspond à aucune carte
-        // Sinon rediriger vers la liste des cartes en y ajoutant du coup la nouvelle qui viens d'être saisi
     }
 }
