@@ -45,6 +45,8 @@ class ScanActivity : AppCompatActivity() {
 		CardViewModelFactory((application as CardApplication).repository)
 	}
 
+	var isLoading = false
+
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_scan)
@@ -135,8 +137,10 @@ class ScanActivity : AppCompatActivity() {
 
 					if (stringBuilder.length == 9 && numeric) {
 						Handler(Looper.getMainLooper()).postDelayed({
-							searchCardById(this@ScanActivity, stringBuilder.toString())
-						}, 1000)
+							if(!isLoading) {
+								searchCardById(this@ScanActivity, stringBuilder.toString())
+							}
+						}, 1500)
 					}
 				}
 			}
@@ -144,6 +148,8 @@ class ScanActivity : AppCompatActivity() {
 	}
 
 	fun searchCardById(view: ScanActivity, stringBuilder: String) {
+
+		isLoading = true
 
 		val retrofitService = RetrofitInstance
 			.getRetrofitInstance()
@@ -162,6 +168,7 @@ class ScanActivity : AppCompatActivity() {
 					applicationContext,
 					this
 				)
+				isLoading = true
 				return@Observer
 			}
 
@@ -190,6 +197,7 @@ class ScanActivity : AppCompatActivity() {
 						applicationContext,
 						this
 					)
+					isLoading = true
 					return@Observer
 				}
 				Thread(Runnable {
@@ -202,6 +210,7 @@ class ScanActivity : AppCompatActivity() {
 				applicationContext,
 				this
 			)
+			isLoading = true
 			val intent = Intent(this, CardsListActivity::class.java)
 			startActivity(intent)
 
