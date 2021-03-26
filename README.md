@@ -1,7 +1,9 @@
 # YuGiOh Kotlin App
 ## _The Best App for scan your Yu-Gi-Oh card_
 
+![YuGiOh Logo](logo.png)
 ![Kotlin Logo](kotlinlogo.png)
+
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
@@ -27,6 +29,10 @@ The project uses different modules, here they are :
 ## Installation
 
 Build the Gradle dependency and you can start  the app !
+
+## Class Diagram
+
+![Class Diagram](diagramme.png)
 
 ## License
 
