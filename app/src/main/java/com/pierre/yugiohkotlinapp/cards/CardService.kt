@@ -10,4 +10,7 @@ interface CardService {
 
 	@GET("cardinfo.php")
 	suspend fun getCardById(@Query("id") id:Int): Response<ProDeckModels>
+
+	@GET("cardinfo.php")
+	suspend fun getCardByString(@Query("id") id:String): Response<ProDeckModels>
 }

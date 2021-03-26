@@ -33,7 +33,7 @@ class ManualActivity : AppCompatActivity() {
 		val adapter = CardListAdapter()
 
 		cardViewModel.allCards.observe(this) { card ->
-			// Update the cached copy of the words in the adapter.
+			// Update the cached copy of the cards in the adapter.
 			card.let { adapter.submitList(it) }
 		}
 	}

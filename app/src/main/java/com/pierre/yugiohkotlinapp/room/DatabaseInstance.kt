@@ -41,19 +41,6 @@ public abstract class DatabaseInstance : RoomDatabase() {
 
                     )
                     cardDao.addCard(card)
-                    card = CardEntity(
-                        0,
-                        "Tornado Dragon",
-                        "2 Level 4 monsters\nOnce per turn (Quick Effect): You can detach 1 material from this card, then target 1 Spell/Trap on the field; destroy it.",
-                        6983839,
-                        "https://storage.googleapis.com/ygoprodeck.com/pics/6983839.jpg",
-                        2100,
-                        2000,
-                        4,
-                        "Wyrm",
-                        "2.99$"
-                    )
-                    cardDao.addCard(card)
                 }
             }
         }
