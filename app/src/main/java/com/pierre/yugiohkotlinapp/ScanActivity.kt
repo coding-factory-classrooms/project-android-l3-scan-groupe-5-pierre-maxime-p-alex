@@ -237,12 +237,10 @@ class ScanActivity : AppCompatActivity() {
 			}
 		} else {
 			// Permission has already been granted
-
 		}
 	}
 
 	private fun isCameraPermissionGranted(): Boolean {
-
 		return ContextCompat.checkSelfPermission(
 			this@ScanActivity,
 			Manifest.permission.CAMERA
