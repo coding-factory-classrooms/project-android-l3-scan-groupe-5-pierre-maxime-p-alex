@@ -17,6 +17,10 @@ class CardViewModel(private val repository: CardRepository) : ViewModel() {
     fun insert(card: CardEntity) = viewModelScope.launch {
         repository.addCard(card)
     }
+
+	fun deleteCardById(cardId: Int) = viewModelScope.launch {
+		repository.deleteCardById(cardId)
+	}
 }
 
 class CardViewModelFactory(private val repository: CardRepository) : ViewModelProvider.Factory {

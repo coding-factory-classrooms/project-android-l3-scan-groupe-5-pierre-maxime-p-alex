@@ -101,7 +101,6 @@ class ManualActivity : AppCompatActivity() {
 			)
 			val intent = Intent(this, CardsListActivity::class.java)
 			startActivity(intent)
-
 		})
 	}
 }
