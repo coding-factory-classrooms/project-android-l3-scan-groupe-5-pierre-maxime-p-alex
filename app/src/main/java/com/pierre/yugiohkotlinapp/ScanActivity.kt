@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.SurfaceHolder
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -35,8 +34,6 @@ import kotlinx.android.synthetic.main.activity_scan.*
 import retrofit2.Response
 import java.lang.Double.parseDouble
 import java.util.*
-import java.util.concurrent.Executors
-import java.util.concurrent.TimeUnit
 
 class ScanActivity : AppCompatActivity() {
 

@@ -9,7 +9,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Database(entities = [CardEntity::class], version = 1, exportSchema = false)
-public abstract class DatabaseInstance : RoomDatabase() {
+abstract class DatabaseInstance : RoomDatabase() {
 
     abstract fun cardDao(): CardDao
 

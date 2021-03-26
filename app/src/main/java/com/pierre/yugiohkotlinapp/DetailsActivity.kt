@@ -3,24 +3,16 @@ package com.pierre.yugiohkotlinapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import com.pierre.yugiohkotlinapp.databinding.ActivityDetailsBinding
 import com.pierre.yugiohkotlinapp.recycler.CardListAdapter
 import com.pierre.yugiohkotlinapp.recycler.CardsListActivity
 import com.pierre.yugiohkotlinapp.room.CardApplication
-import com.pierre.yugiohkotlinapp.room.CardEntity
 import com.pierre.yugiohkotlinapp.room.CardViewModel
 import com.pierre.yugiohkotlinapp.room.CardViewModelFactory
 import com.pierre.yugiohkotlinapp.utils.Utils
 import com.squareup.picasso.Picasso
-import kotlinx.coroutines.*
-import okhttp3.internal.wait
-import java.lang.Runnable
-import kotlin.system.measureTimeMillis
 
 class DetailsActivity : AppCompatActivity() {
 

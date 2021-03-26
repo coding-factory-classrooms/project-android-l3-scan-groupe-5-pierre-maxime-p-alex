@@ -6,12 +6,12 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
 object Utils {
-    fun showAlert(title: String, context: Context, activity: AppCompatActivity) {
-        val builder = AlertDialog.Builder(activity)
-        Toast.makeText(
-            context,
-            title, Toast.LENGTH_SHORT
-        ).show()
-        builder.show()
-    }
+	fun showAlert(title: String, context: Context, activity: AppCompatActivity) {
+		val builder = AlertDialog.Builder(activity)
+		Toast.makeText(
+			context,
+			title, Toast.LENGTH_SHORT
+		).show()
+		builder.show()
+	}
 }

@@ -80,8 +80,8 @@ class ManualActivity : AppCompatActivity() {
 			val cardDatabase = cardViewModel.allCards.value
 
 			if (cardDatabase != null) {
-				val isExist = cardDatabase.any{ it.cardId == cardBody.id}
-				if(isExist) {
+				val isExist = cardDatabase.any { it.cardId == cardBody.id }
+				if (isExist) {
 					showAlert(
 						"Carte déjà sauvegardée",
 						applicationContext,
