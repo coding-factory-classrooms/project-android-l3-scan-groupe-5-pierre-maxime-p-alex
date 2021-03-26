@@ -1,5 +1,4 @@
 # YuGiOh Kotlin App
-## _The Best App for scan your Yu-Gi-Oh card_
 
 ![YuGiOh Logo](logo.png)
 ![Kotlin Logo](kotlinlogo.png)
